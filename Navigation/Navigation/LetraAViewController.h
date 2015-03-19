@@ -7,7 +7,33 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Palavras.h"
 
-@interface LetraAViewController : UIViewController
+
+@interface LetraAViewController : UIViewController<UITabBarDelegate, UIGestureRecognizerDelegate>
+
+
+@property Palavras *palavra;
+@property UILabel *myLabel;
+@property UIButton *botao;
+@property UIBarButtonItem *next;
+@property UIBarButtonItem *previous;
+@property UIImageView *wordImage;
+@property UITabBar *tabBar;
+
+
+//UIImageView positioning
+#define UIImageViewWIDTH 250
+#define UIImageViewHEIGHT 300
+#define UIImageViewX 40
+#define UIImageViewY 100
+
+//label positioning
+
+#define labelWIDTH 100
+#define labelHEIGHT 100
+#define labelX 130
+#define labelY 400
+
 
 @end
