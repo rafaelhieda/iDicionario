@@ -15,7 +15,7 @@
 static NSMutableArray *viewArray;
 static int counter = 0;
 
-@synthesize palavra,myLabel, botao, next, previous, wordImage, tabBar;
+@synthesize palavra,myLabel, botao, next, previous, wordImage, editToolBar, editBarButton,doneBarButton,flexibleSpace, editTextField, nameAux;
 
 -(void) viewDidLoad {
     [super viewDidLoad];
@@ -23,35 +23,21 @@ static int counter = 0;
 
 }
 
--(void)next:(id)sender {
-//    LetraAViewController *proximo = [[LetraAViewController alloc]
-//                                              initWithNibName:nil
-//                                            bundle:NULL];
-// [self.navigationController pushViewController:proximo animated:YES];
-    [self.navigationController pushViewController:[self viewManager] animated:YES];
-}
 
-
--(void)previous:(id)sender
-{
- //   [self popViewControllerManager];
-    [self.navigationController popViewControllerAnimated:YES];
-}
 
 
 -(void)initialize
 {
-
-    
     viewArray = [[NSMutableArray alloc]initWithArray:self.navigationController.viewControllers];
-
+    
+    nameAux = @" ";
     
     if(counter >= 24)
     {
         counter = 0;
     }
     
-    
+    [self.view setBackgroundColor: [UIColor whiteColor]];
     
     //instancia a classe palavra
     palavra = [[Palavras alloc]init];
@@ -73,44 +59,52 @@ static int counter = 0;
     previous = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemRewind target:self action:@selector(previous:)];
     self.navigationItem.leftBarButtonItem = previous;
     
+    //setando a  toolbar
+    editToolBar = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 470, 320, 50)];
     
-    //setando a tab bar
+    editBarButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(buttonManager:)];
+    [editBarButton setTag:0];
     
-    tabBar = [[UITabBar alloc]initWithFrame:CGRectMake(0, 518, 320, 20)];
-    //não estou convicto desta tag aqui, preciso dar uma olhada
-    UITabBarItem *dictionaryView = [[UITabBarItem alloc]initWithTabBarSystemItem:UITabBarSystemItemFavorites tag:0];
-    UITabBarItem *tableView = [[UITabBarItem alloc]initWithTabBarSystemItem:UITabBarSystemItemFeatured tag:0];
-    tabBar.items = @[dictionaryView, tableView];
-    [tabBar setItems: tabBar.items];
-    [tabBar setItemPositioning:UITabBarItemPositioningAutomatic];
+    flexibleSpace = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
     
+    doneBarButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(buttonManager:)];
+    [doneBarButton setTag:1];
     
-    
-    [self.view addSubview:tabBar];
-    
-    
+    NSArray *buttonArray = [[NSArray alloc]initWithObjects:editBarButton,flexibleSpace, doneBarButton ,nil];
+    [editToolBar setItems:buttonArray animated:YES];
 
+    [self.view addSubview:editToolBar];
     
-    //setando o conteúdo da view
-    myLabel = [[UILabel alloc]initWithFrame:CGRectMake(labelX, labelY, labelWIDTH, labelHEIGHT)];
+    
+    
+    //setando a palavra
+    myLabel = [[UILabel alloc]initWithFrame:CGRectMake(labelX, labelY, 100, 50)];
     [myLabel setText:[[[[self palavra]palavrasArray]objectAtIndex:counter
                        ]palavra]];
     [myLabel setTextColor:[UIColor redColor]];
      NSLog(@"%@", [[[[self palavra]palavrasArray]objectAtIndex:counter]palavra]);
-    [self addSubviewWithZoomInAnimation:myLabel duration:2.0 option:UIViewAnimationOptionCurveLinear];
+    [self addSubviewWithZoomInAnimation:myLabel duration:1.0 option:UIViewAnimationOptionCurveLinear];
     
     
+    //setando a imagem
     wordImage = [[UIImageView alloc]initWithImage:[UIImage imageNamed:[[[[self palavra]palavrasArray]objectAtIndex:counter]imagem]]];
     //[wordImage setFrame:CGRectMake(40, 100, 250, 300)];
     [wordImage setFrame:CGRectMake(UIImageViewX, UIImageViewY, UIImageViewWIDTH, UIImageViewHEIGHT)];
-    [self addSubviewWithZoomInAnimation:wordImage duration:2.0 option:UIViewAnimationOptionCurveEaseInOut];
+    [self addSubviewWithZoomInAnimation:wordImage duration:1.0 option:UIViewAnimationOptionCurveEaseInOut];
     
+    //setando o textField
+    
+    editTextField = [[UITextField alloc]initWithFrame:CGRectMake(labelX, labelY, 100, 50)];
+    [editTextField setBorderStyle:UITextBorderStyleRoundedRect];
+    [editTextField setHidden:YES];
+    [editTextField setDelegate:self];
+    [self.view addSubview:editTextField];
     
     
     
     //configurando a gesture para a uiview
     UILongPressGestureRecognizer *longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(gestureManager:)];
-    longPressGestureRecognizer.minimumPressDuration = 3.0f;
+    longPressGestureRecognizer.minimumPressDuration = 2.0f;
     [wordImage addGestureRecognizer:longPressGestureRecognizer];
     [wordImage setUserInteractionEnabled:YES];
     //não esquecer essar interaction enabled.
@@ -137,19 +131,26 @@ static int counter = 0;
 }
 
 
+//metodo delegate que trata de uitextfielddelegate trata e consegue manter os dados do text field;
+-(bool)textFieldShouldReturn:(UITextField *)textField
+{
+    nameAux = [editTextField text];
+    [myLabel setText: nameAux];
+    [textField resignFirstResponder];
+    return YES;
+}
+
 
 #pragma mark - auxiliary methods
 
+//metodo que retorna a primeira letra da palavra
 -(NSString *)character:(NSString *)novaPalavra
 {
     NSString *aux = [NSString stringWithFormat:@"%c", [novaPalavra characterAtIndex:0]];
     return aux;
 }
 
--(void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item
-{
 
-}
 
 
 //metodo de aparição zoomIn
@@ -167,6 +168,8 @@ static int counter = 0;
     
 }
 
+
+//gerencia as gestures
 -(void)gestureManager:(UIGestureRecognizer *)sender
 {
     if([sender isKindOfClass:[UILongPressGestureRecognizer class]])
@@ -179,6 +182,36 @@ static int counter = 0;
         }
 
 }
+
+//gerencias os botoes
+-(void)buttonManager:(UIBarButtonItem*) sender
+{
+    if(sender.tag == 0)
+    {
+        [editTextField setHidden:NO];
+        
+    }
+    if(sender.tag ==1)
+    {
+        [editTextField setHidden:YES];
+    }
+}
+
+-(void)next:(id)sender {
+    //    LetraAViewController *proximo = [[LetraAViewController alloc]
+    //                                              initWithNibName:nil
+    //                                            bundle:NULL];
+    // [self.navigationController pushViewController:proximo animated:YES];
+    [self.navigationController pushViewController:[self viewManager] animated:YES];
+}
+
+
+-(void)previous:(id)sender
+{
+    //   [self popViewControllerManager];
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 
 //metodo que controla o empilhamento das views.
 -(LetraAViewController *)viewManager

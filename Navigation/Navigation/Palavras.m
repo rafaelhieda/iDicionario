@@ -10,9 +10,10 @@
 
 @implementation Palavras
 
-static Palavras *singleton;
-
 @synthesize palavra,imagem, palavrasArray;
+
+static bool isFirstAccess = YES;
+static Palavras *singleton = nil;
 
 -(id)initWithPalavra:(NSString *)novaPalavra novaImagem:(NSString *)novaImagem
 {
@@ -25,12 +26,17 @@ static Palavras *singleton;
     return self;
 }
 
--(Palavras *)instance
++ (id)sharedInstance
 {
-    if(singleton == nil)
-        singleton = [[Palavras alloc]init];
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+                      isFirstAccess = NO;
+        singleton = [[super allocWithZone:NULL]init];
+    });
+    
     return singleton;
 }
+
 
 -(NSArray *)initializedArray
 {

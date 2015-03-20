@@ -9,10 +9,19 @@
 #import "MackenzieAppDelegate.h"
 #import "LetraAViewController.h"
 
+
 @implementation MackenzieAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    _tabBarController = [[UITabBarController alloc]initWithNibName:nil bundle:nil];
+    
+    
+    _tableViewController = [[TableViewController alloc]initWithNibName:nil bundle:nil];
+    
+    
+    
+    
     LetraAViewController *viewController = [[LetraAViewController alloc]
                                            initWithNibName:nil
                                            bundle:nil];
@@ -20,9 +29,24 @@
     
     self.navigationController = [[UINavigationController alloc]
                                  initWithRootViewController:viewController];
+    
     self.window = [[UIWindow alloc]
                    initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.rootViewController = self.navigationController;
+    
+    
+    
+    _tabBarController.viewControllers = @[self.navigationController, _tableViewController];
+   
+    [[_tabBarController.tabBar.items objectAtIndex:0] setImage:[UIImage imageNamed:@"abc"]];
+    
+    [[_tabBarController.tabBar.items objectAtIndex:0] setTitle:@"abc"];
+    
+    [[_tabBarController.tabBar.items objectAtIndex:1] setTitle:@"Dicionario"];
+    [[_tabBarController.tabBar.items objectAtIndex:1] setImage:[UIImage imageNamed:@"dicionario"]];
+    
+    self.window.rootViewController = self.tabBarController;
+    
+    //self.window.rootViewController = self.navigationController;
 
 
     

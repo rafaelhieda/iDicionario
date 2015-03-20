@@ -10,16 +10,21 @@
 #import "Palavras.h"
 
 
-@interface LetraAViewController : UIViewController<UITabBarDelegate, UIGestureRecognizerDelegate>
+@interface LetraAViewController : UIViewController<UITabBarDelegate, UIGestureRecognizerDelegate, UITextFieldDelegate>
 
 
 @property Palavras *palavra;
+@property NSString *nameAux;
 @property UILabel *myLabel;
 @property UIButton *botao;
 @property UIBarButtonItem *next;
 @property UIBarButtonItem *previous;
 @property UIImageView *wordImage;
-@property UITabBar *tabBar;
+@property UIToolbar *editToolBar;
+@property UIBarButtonItem *editBarButton;
+@property UIBarButtonItem *doneBarButton;
+@property UIBarButtonItem *flexibleSpace;
+@property UITextField *editTextField;
 
 
 //UIImageView positioning

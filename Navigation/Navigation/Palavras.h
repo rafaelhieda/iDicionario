@@ -16,7 +16,7 @@
 
 -(id)initWithPalavra:(NSString *)novaPalavra novaImagem:(NSString *)novaImagem;
 
--(Palavras *)instance;
++(id)sharedInstance;
 
 -(NSArray *) initializedArray;
 
