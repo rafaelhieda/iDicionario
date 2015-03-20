@@ -26,12 +26,25 @@
 @property UIBarButtonItem *flexibleSpace;
 @property UITextField *editTextField;
 
+@property CGPoint startPoint;
+
+
+
 
 //UIImageView positioning
 #define UIImageViewWIDTH 250
 #define UIImageViewHEIGHT 300
 #define UIImageViewX 40
 #define UIImageViewY 100
+
+//UIImageView zoom image positioning
+
+#define UIImageViewZoomWIDTH 320
+#define UIImageViewZoomHEIGHT 350
+#define UIImageViewZoomX 0
+#define UIImageViewZoomY 65
+
+
 
 //label positioning
 

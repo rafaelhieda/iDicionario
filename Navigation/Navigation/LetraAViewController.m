@@ -15,7 +15,7 @@
 static NSMutableArray *viewArray;
 static int counter = 0;
 
-@synthesize palavra,myLabel, botao, next, previous, wordImage, editToolBar, editBarButton,doneBarButton,flexibleSpace, editTextField, nameAux;
+@synthesize palavra,myLabel, botao, next, previous, wordImage, editToolBar, editBarButton,doneBarButton,flexibleSpace, editTextField, nameAux, startPoint;
 
 -(void) viewDidLoad {
     [super viewDidLoad];
@@ -45,8 +45,6 @@ static int counter = 0;
     if([palavra palavrasArray] == nil)
        [[self palavra]initializedArray];
    
-    
-    
     
     //setando os botões e o título  da navigation bar
     
@@ -140,6 +138,27 @@ static int counter = 0;
     return YES;
 }
 
+-(void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    
+}
+
+-(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    UITouch *myTouch = [touches anyObject];
+    //colocando no centro
+    startPoint = [myTouch locationInView:self.view];
+    wordImage.center = CGPointMake(startPoint.x, startPoint.y);
+}
+
+-(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [wordImage setFrame:CGRectMake(UIImageViewX,UIImageViewY ,UIImageViewWIDTH ,UIImageViewHEIGHT)];
+}
+
+
+
+
 
 #pragma mark - auxiliary methods
 
@@ -169,12 +188,15 @@ static int counter = 0;
 }
 
 
+
+
 //gerencia as gestures
 -(void)gestureManager:(UIGestureRecognizer *)sender
 {
     if([sender isKindOfClass:[UILongPressGestureRecognizer class]])
         if([sender state] == UIGestureRecognizerStateBegan)
-            [wordImage setFrame:CGRectMake(UIImageViewX, UIImageViewY, 300, 350)];
+            [wordImage setFrame:CGRectMake(UIImageViewZoomX, UIImageViewZoomY, UIImageViewZoomWIDTH, UIImageViewZoomHEIGHT)];
+    
     
         if([sender state] ==  UIGestureRecognizerStateEnded)
         {
@@ -292,6 +314,7 @@ static int counter = 0;
     
     return nil;
 }
+
 
 
 @end

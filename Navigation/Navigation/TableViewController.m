@@ -21,14 +21,8 @@
     [super viewDidLoad];
 
    
-    palavra = [Palavras sharedInstance];
-    [palavra initializedArray];
-    NSLog(@"qtd = %lu", (unsigned long)[[palavra palavrasArray]count]);
+    [self initialize];
    
-   
-    
-    
-    
    }
 
 - (void)didReceiveMemoryWarning {
@@ -40,7 +34,10 @@
 
 -(void)initialize
 {
-   
+    palavra = [Palavras sharedInstance];
+    [palavra initializedArray];
+    NSLog(@"qtd = %lu", (unsigned long)[[palavra palavrasArray]count]);
+    
 }
 
 
@@ -71,6 +68,11 @@
     // Configure the cell...
     
     return cell;
+}
+
+-(bool)prefersStatusBarHidden
+{
+    return YES;
 }
 
 
