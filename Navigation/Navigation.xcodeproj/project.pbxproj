@@ -21,6 +21,9 @@
 		27156F7218B76AF50053A99C /* NavigationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27156F7118B76AF50053A99C /* NavigationTests.m */; };
 		27156F7D18BA89430053A99C /* LetraAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27156F7C18BA89430053A99C /* LetraAViewController.m */; };
 		E38164301ABB4EBC00EADA8A /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E381642F1ABB4EBC00EADA8A /* TableViewController.m */; };
+		E385C6011ABD2081001CCC9B /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E385C5891ABD2081001CCC9B /* Realm.framework */; };
+		E385C64C1ABD20F8001CCC9B /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E385C64B1ABD20F8001CCC9B /* libc++.dylib */; };
+		E385C6501ABDFA8A001CCC9B /* PalavraSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = E385C64F1ABDFA8A001CCC9B /* PalavraSingleton.m */; };
 		E3C12BE51AB75C9B00D1EF97 /* Palavras.m in Sources */ = {isa = PBXBuildFile; fileRef = E3C12BE41AB75C9B00D1EF97 /* Palavras.m */; };
 /* End PBXBuildFile section */
 
@@ -55,8 +58,12 @@
 		27156F7C18BA89430053A99C /* LetraAViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LetraAViewController.m; sourceTree = "<group>"; };
 		E381642E1ABB4EBC00EADA8A /* TableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
 		E381642F1ABB4EBC00EADA8A /* TableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
-		E3C12BE31AB75C9B00D1EF97 /* Palavras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Palavras.h; sourceTree = "<group>"; };
-		E3C12BE41AB75C9B00D1EF97 /* Palavras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Palavras.m; sourceTree = "<group>"; };
+		E385C5891ABD2081001CCC9B /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = "../../../../../../Downloads/realm-cocoa-0.91.1/ios/Realm.framework"; sourceTree = "<group>"; };
+		E385C64B1ABD20F8001CCC9B /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
+		E385C64E1ABDFA8A001CCC9B /* PalavraSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PalavraSingleton.h; path = ../PalavraSingleton.h; sourceTree = "<group>"; };
+		E385C64F1ABDFA8A001CCC9B /* PalavraSingleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PalavraSingleton.m; path = ../PalavraSingleton.m; sourceTree = "<group>"; };
+		E3C12BE31AB75C9B00D1EF97 /* Palavras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Palavras.h; path = Navigation/Palavras.h; sourceTree = "<group>"; };
+		E3C12BE41AB75C9B00D1EF97 /* Palavras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Palavras.m; path = Navigation/Palavras.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +71,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E385C64C1ABD20F8001CCC9B /* libc++.dylib in Frameworks */,
+				E385C6011ABD2081001CCC9B /* Realm.framework in Frameworks */,
 				27156F4F18B76AF50053A99C /* CoreGraphics.framework in Frameworks */,
 				27156F5118B76AF50053A99C /* UIKit.framework in Frameworks */,
 				27156F4D18B76AF50053A99C /* Foundation.framework in Frameworks */,
@@ -86,6 +95,7 @@
 		27156F4018B76AF50053A99C = {
 			isa = PBXGroup;
 			children = (
+				E385C64D1ABDF9FF001CCC9B /* Entidades */,
 				27156F5218B76AF50053A99C /* Navigation */,
 				27156F6B18B76AF50053A99C /* NavigationTests */,
 				27156F4B18B76AF50053A99C /* Frameworks */,
@@ -105,6 +115,8 @@
 		27156F4B18B76AF50053A99C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E385C64B1ABD20F8001CCC9B /* libc++.dylib */,
+				E385C5891ABD2081001CCC9B /* Realm.framework */,
 				27156F4C18B76AF50053A99C /* Foundation.framework */,
 				27156F4E18B76AF50053A99C /* CoreGraphics.framework */,
 				27156F5018B76AF50053A99C /* UIKit.framework */,
@@ -116,6 +128,8 @@
 		27156F5218B76AF50053A99C /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				E385C64E1ABDFA8A001CCC9B /* PalavraSingleton.h */,
+				E385C64F1ABDFA8A001CCC9B /* PalavraSingleton.m */,
 				27156F5B18B76AF50053A99C /* MackenzieAppDelegate.h */,
 				27156F5C18B76AF50053A99C /* MackenzieAppDelegate.m */,
 				27156F5E18B76AF50053A99C /* Images.xcassets */,
@@ -131,8 +145,6 @@
 			children = (
 				27156F5418B76AF50053A99C /* Navigation-Info.plist */,
 				27156F5518B76AF50053A99C /* InfoPlist.strings */,
-				E3C12BE31AB75C9B00D1EF97 /* Palavras.h */,
-				E3C12BE41AB75C9B00D1EF97 /* Palavras.m */,
 				27156F5818B76AF50053A99C /* main.m */,
 				27156F5A18B76AF50053A99C /* Navigation-Prefix.pch */,
 				E381642E1ABB4EBC00EADA8A /* TableViewController.h */,
@@ -157,6 +169,15 @@
 				27156F6E18B76AF50053A99C /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E385C64D1ABDF9FF001CCC9B /* Entidades */ = {
+			isa = PBXGroup;
+			children = (
+				E3C12BE31AB75C9B00D1EF97 /* Palavras.h */,
+				E3C12BE41AB75C9B00D1EF97 /* Palavras.m */,
+			);
+			name = Entidades;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -260,6 +281,7 @@
 				27156F7D18BA89430053A99C /* LetraAViewController.m in Sources */,
 				27156F5918B76AF50053A99C /* main.m in Sources */,
 				E3C12BE51AB75C9B00D1EF97 /* Palavras.m in Sources */,
+				E385C6501ABDFA8A001CCC9B /* PalavraSingleton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -378,6 +400,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/rhieda/Downloads/realm-cocoa-0.91.1/ios/Realm-dynamic",
+					"/Users/rhieda/Downloads/realm-cocoa-0.91.1/ios/Realm-dynamic-simulator",
+					"/Users/rhieda/Downloads/realm-cocoa-0.91.1/ios",
+					"/Users/rhieda/Downloads/realm-cocoa-0.91.1/osx",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Navigation/Navigation-Prefix.pch";
 				INFOPLIST_FILE = "Navigation/Navigation-Info.plist";
@@ -391,6 +420,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/rhieda/Downloads/realm-cocoa-0.91.1/ios/Realm-dynamic",
+					"/Users/rhieda/Downloads/realm-cocoa-0.91.1/ios/Realm-dynamic-simulator",
+					"/Users/rhieda/Downloads/realm-cocoa-0.91.1/ios",
+					"/Users/rhieda/Downloads/realm-cocoa-0.91.1/osx",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Navigation/Navigation-Prefix.pch";
 				INFOPLIST_FILE = "Navigation/Navigation-Info.plist";

@@ -7,8 +7,6 @@
 //
 
 #import "LetraAViewController.h"
-#import "LetraBViewController.h"
-
 
 @implementation LetraAViewController
 
@@ -31,11 +29,6 @@ static int counter = 0;
     viewArray = [[NSMutableArray alloc]initWithArray:self.navigationController.viewControllers];
     
     nameAux = @" ";
-    
-    if(counter >= 24)
-    {
-        counter = 0;
-    }
     
     [self.view setBackgroundColor: [UIColor whiteColor]];
     
@@ -91,7 +84,6 @@ static int counter = 0;
     [self addSubviewWithZoomInAnimation:wordImage duration:1.0 option:UIViewAnimationOptionCurveEaseInOut];
     
     //setando o textField
-    
     editTextField = [[UITextField alloc]initWithFrame:CGRectMake(labelX, labelY, 100, 50)];
     [editTextField setBorderStyle:UITextBorderStyleRoundedRect];
     [editTextField setHidden:YES];
@@ -108,7 +100,7 @@ static int counter = 0;
     //não esquecer essar interaction enabled.
     
     
-    counter++;
+    
     NSLog(@"contador estatico: %d", counter);
     
     
@@ -140,7 +132,7 @@ static int counter = 0;
 
 -(void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    
+    [editTextField resignFirstResponder];
 }
 
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
@@ -187,6 +179,31 @@ static int counter = 0;
     
 }
 
+-(void)imageViewZoomInAnimation:(float)duration option:(UIViewAnimationOptions)option
+{
+    //
+    CGAffineTransform trans = CGAffineTransformScale(wordImage.transform, 1,1);
+    wordImage.transform = trans;
+    [UIView animateWithDuration:duration delay:0.0 options:UIViewAnimationOptionAllowUserInteraction
+                     animations:^{
+                         wordImage.transform = CGAffineTransformScale(wordImage.transform, 1.25, 1.25);
+                     }
+                     completion:nil];
+    
+}
+
+-(void)imageViewZoomOutAnimation:(float)duration option:(UIViewAnimationOptions)option
+{
+    //
+    CGAffineTransform trans = CGAffineTransformScale(wordImage.transform, 1.0,1.0);
+    wordImage.transform = trans;
+    [UIView animateWithDuration:duration delay:0.0 options:UIViewAnimationOptionAllowUserInteraction
+                     animations:^{
+                         wordImage.transform = CGAffineTransformScale(wordImage.transform, 0.8, 0.8);
+                     }
+                     completion:nil];
+    
+}
 
 
 
@@ -195,12 +212,15 @@ static int counter = 0;
 {
     if([sender isKindOfClass:[UILongPressGestureRecognizer class]])
         if([sender state] == UIGestureRecognizerStateBegan)
-            [wordImage setFrame:CGRectMake(UIImageViewZoomX, UIImageViewZoomY, UIImageViewZoomWIDTH, UIImageViewZoomHEIGHT)];
+            [self imageViewZoomInAnimation:1.0 option:UIViewAnimationOptionAllowAnimatedContent];
     
+            //[wordImage setFrame:CGRectMake(UIImageViewZoomX, UIImageViewZoomY, UIImageViewZoomWIDTH, UIImageViewZoomHEIGHT)];
+            
     
         if([sender state] ==  UIGestureRecognizerStateEnded)
         {
-            [wordImage setFrame:CGRectMake(UIImageViewX, UIImageViewY, UIImageViewWIDTH, UIImageViewHEIGHT)];
+            [self imageViewZoomOutAnimation:1.0 option:UIViewAnimationOptionAllowAnimatedContent];
+            //[wordImage setFrame:CGRectMake(UIImageViewX, UIImageViewY, UIImageViewWIDTH, UIImageViewHEIGHT)];
         }
 
 }
@@ -224,53 +244,87 @@ static int counter = 0;
     //                                              initWithNibName:nil
     //                                            bundle:NULL];
     // [self.navigationController pushViewController:proximo animated:YES];
-    [self.navigationController pushViewController:[self viewManager] animated:YES];
+    //[self.navigationController pushViewController:[self viewManager] animated:YES];
+    
+    [self pushViewManager];
+    
 }
 
 
 -(void)previous:(id)sender
 {
     //   [self popViewControllerManager];
-    [self.navigationController popViewControllerAnimated:YES];
+    //[self.navigationController popViewControllerAnimated:YES];
+    [self popViewManager];
 }
 
 
 //metodo que controla o empilhamento das views.
--(LetraAViewController *)viewManager
+//-(LetraAViewController *)viewManager
+//{
+//    NSLog(@"antes de empilhar: %lu", viewArray.count);
+//    
+//        //tratamento utilizando as três views, desempilhando sempre a primeira e empurrando as restantes um índice abaixo
+//        if(viewArray.count == 3)
+//        {
+//            NSLog(@"entrei counter == 3");
+//            [viewArray removeObjectAtIndex:0];
+//            NSLog(@"verificando se ele desempilhou de fato: %lu", viewArray.count);
+//            LetraAViewController *proximo = [[LetraAViewController alloc]initWithNibName:nil bundle:nil];
+////            NSLog(@"quantidade atual de posicoes: %lu", [viewArray count]);
+//            self.navigationController.viewControllers = viewArray;
+//            [viewArray addObject:proximo];
+//            return [viewArray lastObject];
+//        }
+//    //adiciona a segunda view no array de views
+//    else if(viewArray.count == 2)
+//    {
+//        LetraAViewController *proximo = [[LetraAViewController alloc]initWithNibName:nil bundle:nil];
+//        [viewArray addObject:proximo];
+//        return [viewArray lastObject];
+//    }
+//    
+//    //ao iniciar ele só adiciona mais um ao array de views.
+//    else if(viewArray.count  == 1)
+//    {
+//        LetraAViewController *proximo = [[LetraAViewController alloc]initWithNibName:nil bundle:nil];
+//        [viewArray addObject:proximo];
+//        return [viewArray lastObject];
+//    }
+//    
+//    
+//    return nil;
+//        
+//}
+
+-(void)pushViewManager
 {
-    NSLog(@"antes de empilhar: %lu", viewArray.count);
-    
-        //tratamento utilizando as três views, desempilhando sempre a primeira e empurrando as restantes um índice abaixo
-        if(viewArray.count == 3)
-        {
-            NSLog(@"entrei counter == 3");
-            [viewArray removeObjectAtIndex:0];
-            NSLog(@"verificando se ele desempilhou de fato: %lu", viewArray.count);
-            LetraAViewController *proximo = [[LetraAViewController alloc]initWithNibName:nil bundle:nil];
-//            NSLog(@"quantidade atual de posicoes: %lu", [viewArray count]);
-            self.navigationController.viewControllers = viewArray;
-            [viewArray addObject:proximo];
-            return [viewArray lastObject];
-        }
-    //adiciona a segunda view no array de views
-    else if(viewArray.count == 2)
+    if(counter >= 23)
     {
-        LetraAViewController *proximo = [[LetraAViewController alloc]initWithNibName:nil bundle:nil];
-        [viewArray addObject:proximo];
-        return [viewArray lastObject];
+        counter = 0;
     }
-    
-    //ao iniciar ele só adiciona mais um ao array de views.
-    else if(viewArray.count  == 1)
+    else
     {
-        LetraAViewController *proximo = [[LetraAViewController alloc]initWithNibName:nil bundle:nil];
-        [viewArray addObject:proximo];
-        return [viewArray lastObject];
-    }
-    
-    
-    return nil;
+        counter++;
         
+    }
+        LetraAViewController *nextViewController = [[LetraAViewController alloc]
+                                                    initWithNibName:nil bundle:nil];
+    [self.navigationController pushViewController:nextViewController animated:YES];
+}
+
+-(void)popViewManager
+{
+    if(counter == 0)
+        counter = 23;
+    else
+    {
+        counter --;
+    }
+    
+    LetraAViewController *previousViewController = [[LetraAViewController alloc]initWithNibName:nil bundle:nil];
+    self.navigationController.viewControllers = @[previousViewController, self];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(LetraAViewController *)popViewControllerManager

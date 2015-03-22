@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "Realm/Realm.h"
 @interface Palavras : NSObject
-
+//RLMObject
 @property NSString *palavra, *imagem;
 @property NSArray *palavrasArray;
 

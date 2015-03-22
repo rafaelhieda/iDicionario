@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Palavras.h"
-
+#import "PalavraSingleton.h"
 
 @interface LetraAViewController : UIViewController<UITabBarDelegate, UIGestureRecognizerDelegate, UITextFieldDelegate>
 
