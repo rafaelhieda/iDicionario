@@ -21,8 +21,6 @@
 		27156F7218B76AF50053A99C /* NavigationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27156F7118B76AF50053A99C /* NavigationTests.m */; };
 		27156F7D18BA89430053A99C /* LetraAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27156F7C18BA89430053A99C /* LetraAViewController.m */; };
 		E38164301ABB4EBC00EADA8A /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E381642F1ABB4EBC00EADA8A /* TableViewController.m */; };
-		E385C6011ABD2081001CCC9B /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E385C5891ABD2081001CCC9B /* Realm.framework */; };
-		E385C64C1ABD20F8001CCC9B /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E385C64B1ABD20F8001CCC9B /* libc++.dylib */; };
 		E385C6501ABDFA8A001CCC9B /* PalavraSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = E385C64F1ABDFA8A001CCC9B /* PalavraSingleton.m */; };
 		E3C12BE51AB75C9B00D1EF97 /* Palavras.m in Sources */ = {isa = PBXBuildFile; fileRef = E3C12BE41AB75C9B00D1EF97 /* Palavras.m */; };
 /* End PBXBuildFile section */
@@ -58,8 +56,6 @@
 		27156F7C18BA89430053A99C /* LetraAViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LetraAViewController.m; sourceTree = "<group>"; };
 		E381642E1ABB4EBC00EADA8A /* TableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
 		E381642F1ABB4EBC00EADA8A /* TableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
-		E385C5891ABD2081001CCC9B /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = "../../../../../../Downloads/realm-cocoa-0.91.1/ios/Realm.framework"; sourceTree = "<group>"; };
-		E385C64B1ABD20F8001CCC9B /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
 		E385C64E1ABDFA8A001CCC9B /* PalavraSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PalavraSingleton.h; path = ../PalavraSingleton.h; sourceTree = "<group>"; };
 		E385C64F1ABDFA8A001CCC9B /* PalavraSingleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PalavraSingleton.m; path = ../PalavraSingleton.m; sourceTree = "<group>"; };
 		E3C12BE31AB75C9B00D1EF97 /* Palavras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Palavras.h; path = Navigation/Palavras.h; sourceTree = "<group>"; };
@@ -71,8 +67,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E385C64C1ABD20F8001CCC9B /* libc++.dylib in Frameworks */,
-				E385C6011ABD2081001CCC9B /* Realm.framework in Frameworks */,
 				27156F4F18B76AF50053A99C /* CoreGraphics.framework in Frameworks */,
 				27156F5118B76AF50053A99C /* UIKit.framework in Frameworks */,
 				27156F4D18B76AF50053A99C /* Foundation.framework in Frameworks */,
@@ -115,8 +109,6 @@
 		27156F4B18B76AF50053A99C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				E385C64B1ABD20F8001CCC9B /* libc++.dylib */,
-				E385C5891ABD2081001CCC9B /* Realm.framework */,
 				27156F4C18B76AF50053A99C /* Foundation.framework */,
 				27156F4E18B76AF50053A99C /* CoreGraphics.framework */,
 				27156F5018B76AF50053A99C /* UIKit.framework */,
@@ -406,10 +398,12 @@
 					"/Users/rhieda/Downloads/realm-cocoa-0.91.1/ios/Realm-dynamic-simulator",
 					"/Users/rhieda/Downloads/realm-cocoa-0.91.1/ios",
 					"/Users/rhieda/Downloads/realm-cocoa-0.91.1/osx",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Navigation/Navigation-Prefix.pch";
 				INFOPLIST_FILE = "Navigation/Navigation-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -426,10 +420,12 @@
 					"/Users/rhieda/Downloads/realm-cocoa-0.91.1/ios/Realm-dynamic-simulator",
 					"/Users/rhieda/Downloads/realm-cocoa-0.91.1/ios",
 					"/Users/rhieda/Downloads/realm-cocoa-0.91.1/osx",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Navigation/Navigation-Prefix.pch";
 				INFOPLIST_FILE = "Navigation/Navigation-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

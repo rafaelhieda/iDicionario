@@ -10,7 +10,7 @@
 #import "Palavras.h"
 #import "PalavraSingleton.h"
 
-@interface LetraAViewController : UIViewController<UITabBarDelegate, UIGestureRecognizerDelegate, UITextFieldDelegate>
+@interface LetraAViewController : UIViewController<UITabBarDelegate, UIGestureRecognizerDelegate, UITextFieldDelegate, UIImagePickerControllerDelegate>
 
 
 @property Palavras *palavra;
@@ -23,9 +23,12 @@
 @property UIToolbar *editToolBar;
 @property UIBarButtonItem *editBarButton;
 @property UIBarButtonItem *doneBarButton;
+@property UIBarButtonItem *photoBarButton;
 @property UIBarButtonItem *flexibleSpace;
 @property UITextField *editTextField;
-
+@property UIImagePickerController *picker;
+@property UIImage *image;
+@property UIDatePicker *datePicker;
 @property CGPoint startPoint;
 
 

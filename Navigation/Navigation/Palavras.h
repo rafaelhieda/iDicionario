@@ -12,7 +12,7 @@
 //RLMObject
 @property NSString *palavra, *imagem;
 @property NSArray *palavrasArray;
-
+@property NSDate *dataAtual;
 
 -(id)initWithPalavra:(NSString *)novaPalavra novaImagem:(NSString *)novaImagem;
 

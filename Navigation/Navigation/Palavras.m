@@ -73,4 +73,6 @@ static Palavras *singleton = nil;
 
 
 
+
+
 @end
